@@ -143,7 +143,7 @@ def _minimize_trust_region(fun, x0, args=(), jac=None, hess=None, hessp=None,
             Accuracy to solve subproblems. If True requires less nonlinear
             iterations, but more vector products. Only effective for method
             trust-krylov.
-        subproblem_maxiter : int or None
+        subproblem_maxiter : int, optional
             Maximum number of iterations to perform per subproblem. Only
             affects trust-exact. Zero means infinite.
 
