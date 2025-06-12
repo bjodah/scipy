@@ -245,7 +245,8 @@ class IterativeSubproblem(BaseQuadraticSubproblem):
         # problems which may otherwise hang.
         self.maxiter = self.MAXITER_DEFAULT if maxiter is None else maxiter
         if self.maxiter < 0:
-            raise ValueError("maxiter must not be set to a negative number, use np.inf to mean infinite.")
+            raise ValueError(("maxiter must not be set to a negative number"
+                             ", use np.inf to mean infinite."))
 
         # Get Lapack function for cholesky decomposition.
         # The implemented SciPy wrapper does not return
