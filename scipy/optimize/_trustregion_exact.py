@@ -29,7 +29,6 @@ def _minimize_trustregion_exact(fun, x0, args=(), jac=None, hess=None,
         Gradient norm must be less than ``gtol`` before successful
         termination.
     """
-
     if jac is None:
         raise ValueError('Jacobian is required for trust region '
                          'exact minimization.')
@@ -214,7 +213,7 @@ class IterativeSubproblem(BaseQuadraticSubproblem):
     # default. An ad-hoc number (though tested quite extensively)
     # is 25, which is set below. To restore the old behavior (which
     # potentially hangs), this parameter may be changed to zero:
-    MAXITER_DEFAULT = 25  # zero means infinite.
+    MAXITER_DEFAULT = 25  # use np.inf for infinite number of iterations
 
     EPS = np.finfo(float).eps
 
@@ -245,6 +244,8 @@ class IterativeSubproblem(BaseQuadraticSubproblem):
         # the solve method may perform. Useful for poorly conditioned
         # problems which may otherwise hang.
         self.maxiter = self.MAXITER_DEFAULT if maxiter is None else maxiter
+        if self.maxiter < 0:
+            raise ValueError("maxiter must not be set to a negative number, use np.inf to mean infinite.")
 
         # Get Lapack function for cholesky decomposition.
         # The implemented SciPy wrapper does not return
@@ -304,7 +305,7 @@ class IterativeSubproblem(BaseQuadraticSubproblem):
         already_factorized = False
         self.niter = 0
 
-        while self.maxiter == 0 or self.niter < self.maxiter:
+        while self.niter < self.maxiter:
 
             # Compute Cholesky factorization
             if already_factorized:
