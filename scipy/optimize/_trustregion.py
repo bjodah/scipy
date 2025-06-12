@@ -153,7 +153,6 @@ def _minimize_trust_region(fun, x0, args=(), jac=None, hess=None, hessp=None,
         subproblem_maxiter : int, optional
             Maximum number of iterations to perform per subproblem. Only affects
             trust-exact. Default is 25.
-            `._trustregion_exact.IterativeSubproblem.MAXITER_DEFAULT`.
 
             .. versionadded:: 1.17.0
 
