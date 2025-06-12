@@ -145,7 +145,9 @@ def _minimize_trust_region(fun, x0, args=(), jac=None, hess=None, hessp=None,
             trust-krylov.
         subproblem_maxiter : int, optional
             Maximum number of iterations to perform per subproblem. Only
-            affects trust-exact. Zero means infinite.
+            affects trust-exact. Default is 25.
+            
+            .. versionadded:: 1.16.0
 
     This function is called by the `minimize` function.
     It is not supposed to be called directly.
